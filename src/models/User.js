@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = db => {
     User.hasMany(db.Car, {
       foreignKey: {
-        name: "userId"
+        name: "userId",
+        allowNull: false
       }
     });
   };

@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: false
         }
       },
-      type: {
-        type: DataTypes.ENUM("Europe", "Japan"),
-        allowNull: false,
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
         validate: {
-          notEmpty: false
+          notEmpty: true
         }
       }
     },
@@ -31,7 +31,13 @@ module.exports = (sequelize, DataTypes) => {
   Car.associate = db => {
     Car.belongsTo(db.User, {
       foreignKey: {
-        name: "userId"
+        name: "userId",
+        allowNull: false
+      }
+    });
+    Car.belongsTo(db.Type, {
+      foreignKey: {
+        name: "typeId"
       }
     });
   };

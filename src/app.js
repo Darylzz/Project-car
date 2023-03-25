@@ -1,7 +1,9 @@
 const express = require("express");
 const notFoundMiddleware = require("./middleware/notFound");
 const errorMiddleware = require("./middleware/error");
+const authenticate = require("./middleware/authenticate");
 const authRoute = require("./routes/authRoute");
+const carRoute = require("./routes/carRoute");
 // const { sequelize } = require("./models");
 
 const app = express();
@@ -10,6 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/auth", authRoute);
+app.use("/car", authenticate, carRoute);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
