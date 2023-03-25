@@ -28,5 +28,12 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true
     }
   );
+  Car.associate = db => {
+    Car.belongsTo(db.User, {
+      foreignKey: {
+        name: "userId"
+      }
+    });
+  };
   return Car;
 };
