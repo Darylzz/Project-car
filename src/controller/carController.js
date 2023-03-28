@@ -11,6 +11,23 @@ exports.getAllUserCar = async (req, res, next) => {
   }
 };
 
+exports.getCarByUserId = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const car = await Car.findAll({
+      where: {
+        userId: userId
+      }
+    });
+    if (!car) {
+      createError("You not have permission get this car");
+    }
+    res.status(200).json({ car });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.userAddCar = async (req, res, next) => {
   try {
     const value = validateAddCarSchema({
