@@ -2,6 +2,15 @@ const { Car } = require("../models");
 const createError = require("../util/createError");
 const { validateAddCarSchema } = require("../validator/carValidate");
 
+exports.getAllUserCar = async (req, res, next) => {
+  try {
+    const car = await Car.findAll();
+    res.status(200).json({ car });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.userAddCar = async (req, res, next) => {
   try {
     const value = validateAddCarSchema({

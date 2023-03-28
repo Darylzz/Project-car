@@ -10,6 +10,7 @@ const carRoute = require("./routes/carRoute");
 const app = express();
 
 // sequelize.sync({ force: true });
+app.use("/public", express.static("public"));
 app.use(express.json());
 app.use(cors());
 
